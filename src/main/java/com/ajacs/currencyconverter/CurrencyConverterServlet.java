@@ -16,7 +16,7 @@ public class CurrencyConverterServlet extends HttpServlet {
         exchangeRates = new HashMap<>();
         exchangeRates.put("USD", 1.0);
         exchangeRates.put("EUR", 0.93);
-        exchangeRates.put("INR", 83.12);
+        exchangeRates.put("INR", 95.12);
         exchangeRates.put("GBP", 0.79);
         exchangeRates.put("JPY", 149.36);
     }
