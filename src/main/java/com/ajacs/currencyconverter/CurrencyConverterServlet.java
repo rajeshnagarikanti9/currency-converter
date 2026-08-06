@@ -1,7 +1,7 @@
 package com.ajacs.currencyconverter;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
