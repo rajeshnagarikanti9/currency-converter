@@ -23,18 +23,18 @@
 
     <!-- ✅ Dependencies -->
     <dependencies>
-        <!-- Jakarta Servlet API (provided by Tomcat) -->
+        <!-- Java EE Servlet API (provided by Tomcat 9) -->
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- (Optional) JSP API for compilation if you have JSP pages -->
+        <!-- Java EE JSP API (provided by Tomcat 9) -->
         <dependency>
-            <groupId>jakarta.servlet.jsp</groupId>
-            <artifactId>jakarta.servlet.jsp-api</artifactId>
-            <version>3.1.1</version>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -67,4 +67,3 @@
     </build>
 
 </project>
-
