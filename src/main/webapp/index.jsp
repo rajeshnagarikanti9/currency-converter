@@ -23,10 +23,10 @@
         }
         h2 {
             text-align: center;
-            color: #1a365d;          /* Changed color (Dark Blue) */
-            font-family: 'Helvetica Neue', Arial, sans-serif; /* Changed font style */
-            font-size: 280px;         /* Changed font size */
-            margin-bottom: 200px;
+            color: #87CEFA;          /* Changed color (Light sky Blue) */
+            font-family: 'Gothic'; /* Changed font style */
+            font-size: 28px;         /* Changed font size */
+            margin-bottom: 20px;
         }
         .result {
             font-weight: bold;
