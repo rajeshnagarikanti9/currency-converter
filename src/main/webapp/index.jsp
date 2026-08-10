@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>urrency Converter 💱</title>
+    <title>Currency Converter 💱</title>
     <style>
         body {
-            font-family: Gothic, sans-serif;
-            margin: 400px;
+            font-family: Arial, sans-serif;
+            margin: 40px;
             background-color: #0000FF;
         }
         form {
@@ -23,6 +23,10 @@
         }
         h2 {
             text-align: center;
+            color: #1a365d;          /* Changed color (Dark Blue) */
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Changed font style */
+            font-size: 280px;         /* Changed font size */
+            margin-bottom: 200px;
         }
         .result {
             font-weight: bold;
@@ -37,7 +41,7 @@
 </head>
 <body>
     <form action="convert" method="post">
-        <h2>💱 Currency Converter</h2>
+        <h2> Currency Converter</h2>
 
         <label>Amount:</label>
         <input type="text" name="amount" required>
