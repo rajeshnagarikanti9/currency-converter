@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Currency Converter 💱</title>
+    <title>urrency Converter 💱</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f7f7f7;
+            font-family: Gothic, sans-serif;
+            margin: 400px;
+            background-color: #0000FF;
         }
         form {
             background-color: #fff;
