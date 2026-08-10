@@ -6,7 +6,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            background-color: #0000FF;
+            background-color: #87CEFA;
         }
         form {
             background-color: #fff;
