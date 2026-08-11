@@ -69,7 +69,7 @@ pipeline {
         } 
         failure { 
             echo '======================================' 
-            echo 'PIPELINE FAILED' 
+            echo 'PIPELINE FAILED1' 
             echo 'Check the console output for details.' 
             echo '======================================' 
         } 
