@@ -85,22 +85,37 @@ pipeline {
             }
 
             steps {
-                echo 'Preparing deployment on test-node...'
+                echo 'Cleaning deployment workspace...'
+
+                deleteDir()
+
+                echo 'Getting WAR artifact from build server...'
 
                 unstash 'application-war'
 
                 sh '''
+                    echo "WAR file received from build server:"
+                    ls -lh target/*.war
+
                     echo "Removing old WAR files from Tomcat..."
 
-                    rm -rf /home/ubuntu/tomcat9/webapps/*.war
+                    rm -f /home/ubuntu/tomcat9/webapps/*.war
+                    rm -rf /home/ubuntu/tomcat9/webapps/ROOT
 
-                    echo "Renaming and deploying application..."
+                    echo "Renaming WAR to ROOT.war..."
 
                     mv target/*.war target/ROOT.war
 
+                    echo "Deploying application to Tomcat..."
+
                     cp target/ROOT.war /home/ubuntu/tomcat9/webapps/
 
-                    echo "Deployment completed successfully!"
+                    echo "======================================"
+                    echo "DEPLOYMENT SUCCESSFUL"
+                    echo "======================================"
+
+                    echo "Deployed WAR:"
+                    ls -lh /home/ubuntu/tomcat9/webapps/ROOT.war
                 '''
             }
         }
@@ -111,6 +126,8 @@ pipeline {
         success {
             echo '======================================'
             echo 'BUILD SUCCESSFUL'
+            echo 'SONARQUBE ANALYSIS SUCCESSFUL'
+            echo 'QUALITY GATE PASSED'
             echo 'ARTIFACT ARCHIVED'
             echo 'DEPLOYMENT SUCCESSFUL'
             echo '======================================'
