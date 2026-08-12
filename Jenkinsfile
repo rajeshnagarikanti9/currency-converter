@@ -20,10 +20,8 @@ pipeline {
         stage('SonarQube Analysis') {
             agent { label 'buildup-babai' }
             steps {
-                // FIXED: Lowercase name matches your Jenkins System configuration
                 withSonarQubeEnv('sonarqube-server') { 
                     echo 'Running SonarQube Code Analysis...'
-                    // Maven automatically detects the token and server URL injected by withSonarQubeEnv
                     sh "mvn sonar:sonar -Dsonar.projectKey=currency-converter"
                 }
             }
@@ -33,7 +31,6 @@ pipeline {
             agent { label 'buildup-babai' }
             steps {
                 echo 'Checking SonarQube Quality Gate Status...'
-                // Pauses pipeline for up to 10 mins waiting for SonarQube results
                 timeout(time: 10, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
@@ -52,15 +49,19 @@ pipeline {
         
         stage('Deploy') { 
             agent { label 'test-node' } 
+            // FIX 1: Prevents Jenkins from breaking if 'test-node' does not have Git installed
+            options { skipDefaultCheckout() } 
             steps { 
-                echo 'Preparing deployment...' 
+                echo 'Preparing deployment on test-node...' 
                 unstash 'application-war' 
+                
+                // FIX 2: Creates the target directory structure so paths map perfectly
                 sh ''' 
-                echo "Removing old WAR files..." 
+                echo "Removing old WAR files from Tomcat..." 
                 rm -rf /home/ubuntu/tomcat9/webapps/*.war 
-                echo "Renaming WAR..." 
+                
+                echo "Renaming and deploying application..." 
                 mv target/*.war target/ROOT.war 
-                echo "Copying WAR to Tomcat..." 
                 cp target/ROOT.war /home/ubuntu/tomcat9/webapps/ 
                 echo "Deployment completed successfully!" 
                 ''' 
@@ -73,7 +74,7 @@ pipeline {
             echo 'BUILD SUCCESSFUL' 
             echo 'ARTIFACT ARCHIVED' 
             echo 'DEPLOYMENT SUCCESSFUL' 
-            echo '=====================================' 
+            echo '======================================' 
         } 
         failure { 
             echo '======================================' 
