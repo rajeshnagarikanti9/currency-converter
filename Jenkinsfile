@@ -5,7 +5,7 @@ pipeline {
             agent { label 'buildup-babai' } 
             steps { 
                 echo 'Checking out source code...' 
-                git branch: 'main', url: 'https://github.com' 
+                git branch: 'main', url: 'https://github.com/rajeshnagarikanti9/currency-converter.git' 
             } 
         } 
         
