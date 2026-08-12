@@ -73,7 +73,7 @@ pipeline {
             echo 'BUILD SUCCESSFUL' 
             echo 'ARTIFACT ARCHIVED' 
             echo 'DEPLOYMENT SUCCESSFUL' 
-            echo '======================================' 
+            echo '=====================================' 
         } 
         failure { 
             echo '======================================' 
