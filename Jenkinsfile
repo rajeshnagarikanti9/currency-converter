@@ -5,7 +5,7 @@ pipeline {
             agent { label 'buildup-babai' } 
             steps { 
                 echo 'Checking out source code...' 
-                git branch: 'main', url: 'https://github.com/rajeshnagarikanti9/currency-converter.git' 
+                git branch: 'main', url: 'https://github.com' 
             } 
         } 
         
@@ -20,14 +20,22 @@ pipeline {
         stage('SonarQube Analysis') {
             agent { label 'buildup-babai' }
             steps {
-                // This block automatically injects SonarQube environment variables
-                withSonarQubeEnv('SonarQube-Server') { 
+                // FIXED: Lowercase name matches your Jenkins System configuration
+                withSonarQubeEnv('sonarqube-server') { 
                     echo 'Running SonarQube Code Analysis...'
-                    // Uses the Sonar tool scanner configured in Jenkins Tools
-                    def sonarScanner = tool 'SonarQube-Scanner'
-                    
-                    // Runs the analysis using Maven's built-in sonar plugin
+                    // Maven automatically detects the token and server URL injected by withSonarQubeEnv
                     sh "mvn sonar:sonar -Dsonar.projectKey=currency-converter"
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            agent { label 'buildup-babai' }
+            steps {
+                echo 'Checking SonarQube Quality Gate Status...'
+                // Pauses pipeline for up to 10 mins waiting for SonarQube results
+                timeout(time: 10, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
